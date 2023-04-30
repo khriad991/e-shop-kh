@@ -1,0 +1,8 @@
+#dependencien
+/node_modules
+/frontend/node_modules 
+
+
+npm.debug.log*
+yanr.debug.log* 
+yarn.error.log*g
