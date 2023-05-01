@@ -2,22 +2,55 @@ import React, {useState} from 'react';
 import {AiOutlineEye, AiOutlineEyeInvisible} from "react-icons/ai";
 import styles from "../../styles/styles";
 import {Link} from "react-router-dom";
+import {RxAvatar} from "react-icons/rx";
 
-const Login = () => {
+const SingUp = () => {
+    const [name, setName] = useState('')
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("")
     const [visible, setVisible] = useState(false)
+    const [avatar, setAvatar] = useState(null)
+
+
+    //  handleSubmit for from submit handle---------->>>
+    const handleSubmit = () => {
+
+    }
+
+    // handele file inpt for uploa image for profile picture
+    const handleFileInputChange = (e) => {
+        const file = e.target.files[0]
+        setAvatar(file)
+    }
 
     return (
-        <div className='min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px8  '>
-            <div className="sm:mx-auto sm:w-full sm:max-w-md ">
+        <div className='min-h-screen bg-gray-100 flex flex-col justify-center py-12 sm:px-6 lg:px8  '>
+            <div className="sm:mx-auto sm:w-full sm:max-w-md  mb-3 ">
                 <h1 className='mt-6 text-center text-3xl font-extrabold text-gray-900 '>
-                    Login to your account
+                    Sing up as a New User
                 </h1>
             </div>
             <div className="sm:mx-auto sm:w-full sm:max-w-md">
                 <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
                     <form className='space-y-6 '>
+                        <div>
+                            <label
+                                htmlFor='name'
+                                className='block text-sm font-medium text-gray-700'>
+                                Email Address
+                            </label>
+                            <div className="mt-1">
+                                <input type="text"
+                                       name='name'
+                                       autoComplete='name'
+                                       required
+                                       value={name}
+                                       onChange={(e) => setName(e.target.value)}
+                                       className='appearance-none w-full px-3 py-2 border border-gray-300 rounded-md shdow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm   '
+                                />
+
+                            </div>
+                        </div>
                         <div>
                             <label
                                 htmlFor='email'
@@ -33,6 +66,7 @@ const Login = () => {
                                        onChange={(e) => setEmail(e.target.value)}
                                        className='appearance-none w-full px-3 py-2 border border-gray-300 rounded-md shdow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm   '
                                 />
+
                             </div>
                         </div>
                         <div>
@@ -68,6 +102,38 @@ const Login = () => {
 
                             </div>
                         </div>
+                        <div>
+                            <label htmlFor="avatar" className='block text-sm font-medium text-gray-700'>
+                                <div className="mt-2 flex item-center">
+                                    <span className='inline-block h-8 w-8 rounded-full overflow-hidden '>
+                                        {
+                                            avatar ? (
+                                                <img src={URL.createObjectURL(avatar)}
+                                                     alt="avatar"
+                                                     className='w-full h-full object-cover rounded-full '/>
+                                            ) : (
+                                                <RxAvatar className='w-8 h-8 '/>
+                                            )}
+                                    </span>
+                                    <label
+                                        htmlFor="file-input"
+                                        className="ml-5 flex items-center justify-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50"
+                                    >
+                                        <span>Upload a file</span>
+                                        <input
+                                            type="file"
+                                            name="avatar"
+                                            id="file-input"
+                                            accept=".jpg,.jpeg,.png"
+                                            onChange={handleFileInputChange}
+                                            className="sr-only"
+                                        />
+                                    </label>
+                                </div>
+
+                            </label>
+                        </div>
+
                         <div className={`${styles.noramlFlex} justify-between`}>
                             <div className={`${styles.noramlFlex} `}>
                                 <input type="checkbox" name="remember-me" id="remember-me"
@@ -84,6 +150,8 @@ const Login = () => {
                                 </a>
                             </div>
                         </div>
+
+
                         <div>
                             <button type='submit'
                                     className='group relative w-full h-[40px] flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 uppercase'>
@@ -91,14 +159,18 @@ const Login = () => {
                             </button>
                         </div>
                         <div className={`${styles.noramlFlex} w-full`}>
-                            <h4>Not have any account </h4>
-                            <Link to="/sing-up" className='text-blue-500 pl-2 hover:text-blue-800'>
-                                Sing up
+                            <h4>Already have an account </h4>
+                            <Link to="/login" className='text-blue-500 pl-2 hover:text-blue-800'>
+                                Sing in
                             </Link>
                         </div>
                     </form>
+
+                </div>
+            </div>
+
         </div>
     );
 };
 
-export default Login;
+export default SingUp;
