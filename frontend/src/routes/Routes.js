@@ -3,5 +3,5 @@ import SingUpPage from '../pages/SingUpPage'
 
 export {
     LoginPage,
-    SingUpPage
+    SingUpPage,
 }

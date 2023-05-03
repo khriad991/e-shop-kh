@@ -14,6 +14,7 @@ const SingUp = () => {
 
     //  handleSubmit for from submit handle---------->>>
     const handleSubmit = () => {
+        console.log('hello')
 
     }
 
